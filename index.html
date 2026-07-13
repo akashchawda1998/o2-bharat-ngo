@@ -151,7 +151,7 @@ nav.links a:hover::after{width:100%;}
 .hero{
   padding:0;overflow:hidden;min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
-  background:linear-gradient(135deg,#0a1f0e 0%,#0d2233 55%,#0f2016 100%);
+  background:linear-gradient(135deg,#0a1f0e 0%,#0d2233 55%,#071829 100%);
   position:relative;
 }
 .hero-mesh{
@@ -388,16 +388,22 @@ nav.links a:hover::after{width:100%;}
 
 @media(max-width:960px){.hero-grid{grid-template-columns:1fr;}.hero-visual{order:-1;max-width:320px;}}
 
-/* ====== ABOUT (dark, merged with hero) ====== */
+/* ====== ABOUT (dark, separate color from hero) ====== */
 .about{
-  background:linear-gradient(180deg,#0d2233 0%,#0f2016 60%,#0f2016 100%);
+  background:#0f2016;  /* deep forest green — clearly distinct from hero navy */
   color:#fff;
-  padding-top:0;   /* no gap — continues from hero */
+  padding-top:80px;
   position:relative;overflow:hidden;
 }
-/* fade bottom edge into cream */
+/* top border accent line */
+.about::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--green-500),var(--blue-500),var(--orange-500));
+  z-index:3;
+}
+/* fade bottom into cream */
 .about::after{
-  content:"";position:absolute;bottom:0;left:0;right:0;height:160px;
+  content:"";position:absolute;bottom:0;left:0;right:0;height:120px;
   background:linear-gradient(to bottom,transparent,var(--cream));
   pointer-events:none;z-index:1;
 }
@@ -1012,6 +1018,13 @@ footer ul a:hover{color:#fff;}
     </div>
   </div>
 </section>
+
+<!-- Wave separator: hero navy → about forest green -->
+<div style="background:linear-gradient(135deg,#0a1f0e,#0d2233);line-height:0;margin:0;padding:0;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:60px;">
+    <path d="M0 0 C360 60 1080 0 1440 40 L1440 60 L0 60 Z" fill="#0f2016"/>
+  </svg>
+</div>
 
 <!-- ABOUT — same dark background, seamlessly continues hero -->
 <section class="about on-dark" id="about">
