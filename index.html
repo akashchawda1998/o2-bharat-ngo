@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimistic Outreach Trust | O2 Bharat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-300:#8bd17f;
+    --green-500:#4caf50;
+    --green-700:#2e7d32;
+    --green-900:#16281f;
+    --blue-500:#2e86de;
+    --blue-700:#14508c;
+    --orange-500:#f7931e;
+    --orange-600:#e07d0a;
+    --bg:#f6f9f5;
+    --bg-card:#ffffff;
+    --ink:#16281f;
+    --ink-soft:#3c5347;
+    --line: rgba(22,40,31,0.12);
+    --radius: 20px;
+    --shadow: 0 20px 45px -25px rgba(22,40,31,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope', system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0 0 0.5em;
+    color:var(--green-900);
+  }
+
+  em.accent{
+    font-style:italic;
+    font-weight:500;
+    color:var(--blue-700);
+  }
+
+  p{margin:0 0 1em; color:var(--ink-soft);}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  section{position:relative; padding:100px 24px;}
+  .wrap{max-width:1140px; margin:0 auto;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Manrope'; font-weight:700; font-size:0.78rem;
+    letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--green-700); margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:""; width:22px; height:2px; background:var(--orange-500); display:inline-block; border-radius:2px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 28px; border-radius:999px;
+    font-family:'Manrope'; font-weight:700; font-size:0.95rem;
+    text-decoration:none; border:2px solid transparent; cursor:pointer;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(120deg, var(--green-500), var(--green-700));
+    color:#fff; box-shadow:0 14px 30px -12px rgba(46,125,50,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 20px 34px -12px rgba(46,125,50,0.6);}
+  .btn-outline{
+    border-color:var(--green-700); color:var(--green-700); background:transparent;
+  }
+  .btn-outline:hover{background:var(--green-700); color:#fff; transform:translateY(-3px);}
+  .btn-orange{
+    background:linear-gradient(120deg, var(--orange-500), var(--orange-600));
+    color:#fff; box-shadow:0 14px 30px -12px rgba(224,125,10,0.55);
+  }
+  .btn-orange:hover{transform:translateY(-3px);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,249,245,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1140px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand-mark{width:40px; height:40px; flex-shrink:0;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.15;}
+  .brand-text strong{font-family:'Fraunces'; font-weight:600; font-size:1.05rem; color:var(--green-900);}
+  .brand-text span{font-size:0.72rem; letter-spacing:0.08em; color:var(--blue-700); font-weight:700;}
+  nav.links{display:flex; gap:32px; align-items:center;}
+  nav.links a{
+    text-decoration:none; font-weight:600; font-size:0.92rem; color:var(--ink);
+    position:relative; padding:6px 0;
+  }
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--orange-500); transition:width 0.25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-toggle span{display:block; width:24px; height:2px; background:var(--green-900); margin:5px 0; border-radius:2px;}
+
+  @media (max-width:860px){
+    nav.links{
+      position:fixed; inset:64px 0 auto 0; background:#fff;
+      flex-direction:column; padding:24px; gap:18px;
+      box-shadow:0 20px 30px -20px rgba(0,0,0,0.2);
+      transform:translateY(-140%); transition:transform 0.3s ease; border-bottom:1px solid var(--line);
+    }
+    nav.links.open{transform:translateY(0);}
+    .menu-toggle{display:block;}
+    .nav-actions .btn{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:70px 24px 60px;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(600px 380px at 82% 8%, rgba(247,147,30,0.16), transparent 60%),
+      radial-gradient(560px 420px at 8% 90%, rgba(46,134,222,0.14), transparent 60%);
+  }
+  .hero-grid{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  .hero h1{font-size:clamp(2.3rem, 4.4vw, 3.6rem); max-width:640px;}
+  .hero p.lead{font-size:1.12rem; max-width:520px;}
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap; margin-top:28px;}
+  .hero-stats{display:flex; gap:34px; margin-top:44px; flex-wrap:wrap;}
+  .hero-stats div strong{display:block; font-family:'Fraunces'; font-size:1.9rem; color:var(--green-700);}
+  .hero-stats div span{font-size:0.82rem; color:var(--ink-soft); font-weight:600;}
+
+  .hero-art{position:relative;}
+  .hero-art svg{width:100%; height:auto;}
+
+  /* ---------- Wave divider ---------- */
+  .divider{width:100%; display:block; margin-top:-2px;}
+
+  /* ---------- About ---------- */
+  .about{background:#fff;}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:center;}
+  .about-visual{position:relative;}
+  .about-cards{display:grid; gap:16px; margin-top:28px;}
+  .mini-card{
+    display:flex; gap:14px; align-items:flex-start;
+    background:var(--bg); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+  }
+  .mini-card .icon{
+    width:42px; height:42px; border-radius:12px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--green-500), var(--blue-500)); color:#fff;
+  }
+  .mini-card h4{margin-bottom:4px; font-size:1.02rem;}
+  .mini-card p{margin:0; font-size:0.92rem;}
+
+  /* ---------- Ways we help ---------- */
+  .help{
+    background:linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+  }
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .cards4{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .card{
+    background:var(--bg-card); border-radius:var(--radius); padding:30px 24px;
+    box-shadow:var(--shadow); border:1px solid var(--line);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover{transform:translateY(-8px);}
+  .card .icon-badge{
+    width:52px; height:52px; border-radius:14px; margin-bottom:18px;
+    display:flex; align-items:center; justify-content:center; color:#fff;
+  }
+  .card:nth-child(1) .icon-badge{background:linear-gradient(135deg, var(--green-500), var(--green-700));}
+  .card:nth-child(2) .icon-badge{background:linear-gradient(135deg, var(--blue-500), var(--blue-700));}
+  .card:nth-child(3) .icon-badge{background:linear-gradient(135deg, var(--orange-500), var(--orange-600));}
+  .card:nth-child(4) .icon-badge{background:linear-gradient(135deg, var(--green-700), var(--blue-700));}
+  .card h4{font-size:1.08rem;}
+  .card p{font-size:0.92rem; margin-bottom:14px;}
+  .card a.more{font-size:0.85rem; font-weight:700; color:var(--green-700); text-decoration:none;}
+
+  @media (max-width:960px){ .cards4{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .cards4{grid-template-columns:1fr;} }
+
+  /* ---------- O2 Bharat platform (signature section) ---------- */
+  .platform{
+    background:
+      radial-gradient(900px 500px at 15% 0%, rgba(76,175,80,0.16), transparent 55%),
+      radial-gradient(900px 550px at 100% 30%, rgba(46,134,222,0.18), transparent 55%),
+      linear-gradient(180deg, var(--green-900) 0%, #10201a 100%);
+    color:#fff; overflow:hidden;
+  }
+  .platform h2, .platform h3{color:#fff;}
+  .platform .eyebrow{color:var(--orange-500);}
+  .platform .eyebrow::before{background:#fff;}
+  .platform p{color:rgba(255,255,255,0.78);}
+
+  .platform-top{max-width:720px; margin-bottom:56px;}
+  .platform-tag{
+    font-family:'Fraunces'; font-style:italic; font-weight:500;
+    font-size:1.28rem; line-height:1.5; color:#fff;
+    border-left:3px solid var(--orange-500); padding-left:20px; margin-top:22px;
+  }
+  .platform-tag strong{color:var(--green-300); font-style:normal; font-weight:700;}
+
+  .platform-body{
+    display:grid; grid-template-columns:0.95fr 1.05fr; gap:60px; align-items:center;
+  }
+
+  /* phone mockup made from CSS */
+  .phone-wrap{display:flex; justify-content:center; position:relative;}
+  .phone{
+    width:270px; height:540px; border-radius:42px;
+    background:linear-gradient(155deg,#1a2e24,#0d1712);
+    border:8px solid #0a1712; box-shadow:0 40px 70px -30px rgba(0,0,0,0.7);
+    position:relative; overflow:hidden;
+  }
+  .phone::before{
+    content:""; position:absolute; top:18px; left:50%; transform:translateX(-50%);
+    width:80px; height:8px; border-radius:6px; background:rgba(255,255,255,0.15);
+  }
+  .phone-screen{
+    position:absolute; inset:34px 10px 10px; border-radius:26px;
+    background:linear-gradient(180deg, #f6f9f5, #eef4ec);
+    padding:20px 16px; display:flex; flex-direction:column; gap:12px;
+  }
+  .phone-screen .app-row{
+    display:flex; align-items:center; gap:10px;
+    background:#fff; border-radius:14px; padding:10px 12px;
+    box-shadow:0 8px 18px -12px rgba(0,0,0,0.25);
+  }
+  .phone-screen .app-row .dot{width:30px; height:30px; border-radius:9px; flex-shrink:0;}
+  .phone-screen .app-row .txt{display:flex; flex-direction:column; gap:3px;}
+  .phone-screen .app-row .txt b{font-size:0.78rem; color:var(--green-900); font-family:'Manrope';}
+  .phone-screen .app-row .txt span{font-size:0.66rem; color:#6b7f74;}
+  .float-badge{
+    position:absolute; background:#fff; color:var(--green-900);
+    border-radius:14px; padding:10px 14px; box-shadow:0 18px 30px -14px rgba(0,0,0,0.4);
+    font-size:0.78rem; font-weight:700; display:flex; align-items:center; gap:8px;
+  }
+  .float-badge.b1{top:14%; left:-6%;}
+  .float-badge.b2{bottom:10%; right:-8%;}
+  .float-badge .dot-sm{width:9px; height:9px; border-radius:50%; background:var(--orange-500); flex-shrink:0;}
+
+  .pillars{display:grid; gap:18px;}
+  .pillar{
+    display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:flex-start;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px; padding:20px 22px; backdrop-filter:blur(6px);
+  }
+  .pillar .num{
+    font-family:'Fraunces'; font-style:italic; font-size:1.6rem; color:var(--orange-500);
+  }
+  .pillar h4{color:#fff; margin-bottom:6px; font-size:1.05rem;}
+  .pillar p{margin:0; font-size:0.9rem;}
+
+  /* ---------- Impact / progress ---------- */
+  .impact{background:#fff;}
+  .impact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .progress-card{
+    background:var(--bg); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; box-shadow:var(--shadow);
+  }
+  .progress-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .progress-top strong{font-family:'Fraunces'; font-size:1.5rem; color:var(--green-700);}
+  .progress-top span{font-size:0.85rem; color:var(--ink-soft); font-weight:600;}
+  .bar-track{height:12px; border-radius:999px; background:#e6ede4; overflow:hidden;}
+  .bar-fill{
+    height:100%; width:0%; border-radius:999px;
+    background:linear-gradient(90deg, var(--green-500), var(--orange-500));
+    transition:width 1.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .progress-meta{display:flex; justify-content:space-between; margin-top:10px; font-size:0.82rem; color:var(--ink-soft); font-weight:600;}
+
+  /* ---------- Stories ---------- */
+  .stories{background:var(--bg);}
+  .story-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .story-card{
+    background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+    border:1px solid var(--line); display:flex; flex-direction:column;
+  }
+  .story-media{
+    height:170px; background:linear-gradient(135deg, var(--green-300), var(--blue-500));
+    position:relative;
+  }
+  .story-media span{
+    position:absolute; bottom:12px; left:14px; background:rgba(255,255,255,0.9);
+    color:var(--green-900); font-size:0.72rem; font-weight:700; padding:5px 10px; border-radius:999px;
+  }
+  .story-body{padding:22px 22px 26px;}
+  .story-body h4{font-size:1.05rem; margin-bottom:8px;}
+  .story-body p{font-size:0.9rem;}
+  .story-body a{font-size:0.85rem; font-weight:700; color:var(--green-700); text-decoration:none;}
+  @media (max-width:960px){ .story-cards{grid-template-columns:1fr;} }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--green-700), var(--blue-700));
+    color:#fff; text-align:center; border-radius:28px; margin:0 24px;
+    padding:60px 24px;
+  }
+  .cta-band h2{color:#fff;}
+  .cta-band p{color:rgba(255,255,255,0.85); max-width:520px; margin-left:auto; margin-right:auto;}
+  .cta-band .hero-cta{justify-content:center;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--green-900); color:rgba(255,255,255,0.75); padding:70px 24px 26px;}
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; margin-bottom:50px;
+  }
+  footer h4{color:#fff; font-family:'Manrope'; font-size:0.95rem; margin-bottom:16px;}
+  footer p{color:rgba(255,255,255,0.65); font-size:0.9rem;}
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  footer ul a{text-decoration:none; color:rgba(255,255,255,0.72); font-size:0.9rem;}
+  footer ul a:hover{color:#fff;}
+  .foot-brand{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .foot-brand strong{font-family:'Fraunces'; color:#fff; font-size:1.1rem;}
+  .newsletter{display:flex; gap:8px; margin-top:10px;}
+  .newsletter input{
+    flex:1; border-radius:999px; border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.08); padding:11px 16px; color:#fff; font-family:'Manrope'; font-size:0.85rem;
+  }
+  .newsletter input::placeholder{color:rgba(255,255,255,0.5);}
+  .newsletter button{
+    border:none; border-radius:999px; padding:0 18px; background:var(--orange-500); color:#fff;
+    font-weight:700; cursor:pointer;
+  }
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.12); padding-top:22px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.8rem;
+  }
+  .socials{display:flex; gap:10px;}
+  .socials a{
+    width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.1);
+    display:flex; align-items:center; justify-content:center; text-decoration:none; color:#fff;
+  }
+
+  @media (max-width:960px){
+    .hero-grid, .about-grid, .platform-body, .impact-grid{grid-template-columns:1fr;}
+    .hero-art{order:-1;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    section{padding:70px 18px;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <span class="brand-text">
+        <strong>Optimistic Outreach Trust</strong>
+        <span>O2 BHARAT</span>
+      </span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#help">What We Do</a>
+      <a href="#platform">O2 Bharat</a>
+      <a href="#impact">Impact</a>
+      <a href="#stories">Stories</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-primary">Donate Now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Optimistic Outreach NGO · India</span>
+      <h1>Be the change <em class="accent">a child</em> needs.</h1>
+      <p class="lead">Your time, compassion, and skills can transform lives. Whether it's education, healthcare, or community support — your presence brings hope and joy to a child who is waiting for one.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Become a Volunteer</a>
+        <a href="#contact" class="btn btn-outline">Make a Donation</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>1,200+</strong><span>Children Supported</span></div>
+        <div><strong>60+</strong><span>Active Volunteers</span></div>
+        <div><strong>18</strong><span>Communities Reached</span></div>
+      </div>
+    </div>
+    <div class="hero-collage">
+      <div class="collage-card card-a">
+        <div class="collage-shine"></div>
+        <span class="collage-tag">Education</span>
+      </div>
+      <div class="collage-card card-b">
+        <div class="collage-shine"></div>
+        <span class="collage-tag">Healthcare</span>
+      </div>
+      <div class="collage-card card-c">
+        <div class="collage-shine"></div>
+        <span class="collage-tag">Community</span>
+      </div>
+      <div class="collage-badge badge-top">
+        <strong>4.9<span>/5</span></strong>
+        <span class="badge-label">Donor Trust Score</span>
+      </div>
+      <div class="collage-badge badge-bottom">
+        <div class="avatars">
+          <span style="background:linear-gradient(135deg,var(--green-500),var(--green-700))"></span>
+          <span style="background:linear-gradient(135deg,var(--blue-500),var(--blue-700))"></span>
+          <span style="background:linear-gradient(135deg,var(--orange-500),var(--orange-600))"></span>
+        </div>
+        <span class="badge-label">Joined this week</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 30 C 240 60 480 0 720 20 C 960 40 1200 0 1440 30 L1440 60 L0 60 Z" fill="#ffffff"/>
+</svg>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual">
+      <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="190" cy="190" r="170" fill="var(--bg)"/>
+        <path d="M60 230 A140 140 0 0 1 320 230" fill="none" stroke="var(--orange-500)" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="150" cy="150" r="24" fill="var(--green-500)"/>
+        <circle cx="230" cy="150" r="24" fill="var(--blue-500)"/>
+        <path d="M95 280 C120 210 165 210 190 240 C215 210 260 210 285 280" fill="none" stroke="var(--green-700)" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+        <path d="M40 60 C120 20 260 20 340 60" fill="none" stroke="var(--blue-500)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+    <div>
+      <span class="eyebrow">Our Story</span>
+      <h2>Hope and healing for <em class="accent">every</em> child.</h2>
+      <p>No matter what a child is going through, help and healing are always within reach. We believe every child deserves care, compassion, and a genuine chance to thrive — through education, healthcare, and a community that shows up.</p>
+      <div class="about-cards">
+        <div class="mini-card">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C.9 8.3 2.6 5 6 5c2 0 3.4 1.1 4 2 .6-.9 2-2 4-2 3.4 0 5.1 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z" fill="white"/></svg>
+          </div>
+          <div><h4>Caring hearts, bright futures</h4><p>Every child deserves a future filled with hope, care, and endless possibility.</p></div>
+        </div>
+        <div class="mini-card">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.9L21 10l-4.5 4.2L17.8 21 12 17.6 6.2 21l1.3-6.8L3 10l6.4-1.1L12 3z" fill="white"/></svg>
+          </div>
+          <div><h4>Nurturing young minds</h4><p>Because every child deserves a real chance to learn, grow, and shine.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="help" id="help">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Ways We Make a Difference</span>
+      <h2>Hearts that help, hands that heal.</h2>
+      <p>Four simple ways your support reaches a child directly — funded, delivered, and followed through by our on-ground volunteers.</p>
+    </div>
+    <div class="cards4">
+      <div class="card">
+        <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <h4>Raise Funds for Hope</h4>
+        <p>We gather generous donations to support food, shelter, and education for children in need. Every rupee makes a difference.</p>
+        <a class="more" href="#contact">Read more →</a>
+      </div>
+      <div class="card">
+        <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C.9 8.3 2.6 5 6 5c2 0 3.4 1.1 4 2 .6-.9 2-2 4-2 3.4 0 5.1 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z" fill="white"/></svg></div>
+        <h4>Provide Medical Care</h4>
+        <p>Access to treatment can save lives. We help children get the healthcare they deserve, because every child deserves a healthy future.</p>
+        <a class="more" href="#contact">Read more →</a>
+      </div>
+      <div class="card">
+        <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 21c2-6 6-9 8-9s6 3 8 9" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" fill="white"/></svg></div>
+        <h4>Guiding Hands</h4>
+        <p>We offer loving guidance to children, giving them hope, care, and the support to grow, dream big, and shine brightly.</p>
+        <a class="more" href="#contact">Read more →</a>
+      </div>
+      <div class="card">
+        <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.9L21 10l-4.5 4.2L17.8 21 12 17.6 6.2 21l1.3-6.8L3 10l6.4-1.1L12 3z" fill="white"/></svg></div>
+        <h4>Inspire Hope</h4>
+        <p>We encourage children with hope and belief in themselves, empowering them to reach for brighter, limitless futures.</p>
+        <a class="more" href="#contact">Read more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="platform" id="platform">
+  <div class="wrap">
+    <div class="platform-top">
+      <span class="eyebrow">A New Initiative</span>
+      <h2>Introducing O2 Bharat.</h2>
+      <p class="platform-tag">O2 Bharat brings your community online — connecting <strong>families</strong>, empowering <strong>professionals</strong>, and building a <strong>stronger tomorrow</strong> together. One app, every need.</p>
+    </div>
+    <div class="platform-body">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="app-row">
+              <div class="dot" style="background:linear-gradient(135deg,var(--green-500),var(--green-700))"></div>
+              <div class="txt"><b>Family Circle</b><span>Stay connected, stay supported</span></div>
+            </div>
+            <div class="app-row">
+              <div class="dot" style="background:linear-gradient(135deg,var(--blue-500),var(--blue-700))"></div>
+              <div class="txt"><b>Find a Professional</b><span>Trusted help, nearby</span></div>
+            </div>
+            <div class="app-row">
+              <div class="dot" style="background:linear-gradient(135deg,var(--orange-500),var(--orange-600))"></div>
+              <div class="txt"><b>Community Board</b><span>Requests, events, updates</span></div>
+            </div>
+            <div class="app-row">
+              <div class="dot" style="background:linear-gradient(135deg,var(--green-700),var(--blue-700))"></div>
+              <div class="txt"><b>Give & Volunteer</b><span>Small acts, real change</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="float-badge b1"><span class="dot-sm"></span>500+ Families Connected</div>
+        <div class="float-badge b2"><span class="dot-sm"></span>Verified Local Help</div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="num">01</span>
+          <div><h4>For Families</h4><p>A shared space to stay in touch, ask for support, and find trustworthy help close to home — without losing the personal touch.</p></div>
+        </div>
+        <div class="pillar">
+          <span class="num">02</span>
+          <div><h4>For Professionals</h4><p>Doctors, teachers, caregivers, and volunteers get a platform to offer their skills where communities need them most.</p></div>
+        </div>
+        <div class="pillar">
+          <span class="num">03</span>
+          <div><h4>For the Community</h4><p>Local requests, events, and outreach efforts in one place — so no need goes unseen, and no offer of help goes to waste.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact" id="impact">
+  <div class="wrap impact-grid">
+    <div>
+      <span class="eyebrow">Change a Life</span>
+      <h2>Turning small gifts into <em class="accent">real</em> outcomes.</h2>
+      <p>Every campaign we run is tracked openly — so you always know exactly where your kindness goes, and what it made possible.</p>
+      <a href="#contact" class="btn btn-orange">Support This Campaign</a>
+    </div>
+    <div class="progress-card">
+      <div class="progress-top">
+        <strong id="raisedAmt">₹0</strong>
+        <span>of ₹1,00,000 goal</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+      <div class="progress-meta">
+        <span id="percentLabel">0% funded</span>
+        <span>24/7 Support Available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stories" id="stories">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">From Our Blog</span>
+      <h2>Smiles through struggles.</h2>
+      <p>Stories of resilient children, told the way they happened — with the help of donors, volunteers, and a community that showed up.</p>
+    </div>
+    <div class="story-cards">
+      <div class="story-card">
+        <div class="story-media"><span>Community</span></div>
+        <div class="story-body">
+          <h4>Smiles of Hope: A Brighter Future for Every Child</h4>
+          <p>Education and support programs gave underprivileged children more than smiles — they sowed the seeds of a brighter tomorrow.</p>
+          <a href="#">Read the story →</a>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-media"><span>Health</span></div>
+        <div class="story-body">
+          <h4>Empowering Lives: Autism Support Across India</h4>
+          <p>How grassroots organisations are building understanding, access, and everyday support for children on the spectrum.</p>
+          <a href="#">Read the story →</a>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-media"><span>Fundraiser</span></div>
+        <div class="story-body">
+          <h4>A Fundraiser for Healing and Growth</h4>
+          <p>Every child, no matter their circumstances, deserves a future built on care — here's how one campaign made that possible.</p>
+          <a href="#">Read the story →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta-band wrap">
+    <h2>Your gift today can change a child's tomorrow.</h2>
+    <p>Join hands with Optimistic Outreach Trust — every contribution, big or small, becomes part of a child's story.</p>
+    <div class="hero-cta">
+      <a href="tel:+918769763298" class="btn btn-primary" style="background:#fff; color:var(--green-700); box-shadow:none;">Donate Now</a>
+      <a href="#" class="btn btn-outline" style="border-color:#fff; color:#fff;">Become a Volunteer</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="foot-brand">
+          <strong>Optimistic Outreach Trust</strong>
+        </div>
+        <p>Building a larger community for people who need support, powered by people who want to give it — one child, one family, at a time.</p>
+        <p style="color:#fff; font-weight:700;">Hotline 24/7 · +91 87697 63298</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Give a Donation</a></li>
+          <li><a href="#">Education Support</a></li>
+          <li><a href="#">Food Support</a></li>
+          <li><a href="#">Health Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay Connected</h4>
+        <p>Get stories of the children we support, straight to your inbox.</p>
+        <div class="newsletter">
+          <input type="email" placeholder="Email address">
+          <button>Join</button>
+        </div>
+        <div class="socials" style="margin-top:20px;">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Optimistic Outreach Trust · O2 Bharat. All rights reserved.</span>
+      <span>Made with care, for every child.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Animate progress bar into view
+  const bar = document.getElementById('barFill');
+  const raisedAmt = document.getElementById('raisedAmt');
+  const percentLabel = document.getElementById('percentLabel');
+  const goal = 100000;
+  const raised = 42500;
+  const percent = Math.round((raised / goal) * 100);
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        bar.style.width = percent + '%';
+        let start = 0;
+        const step = Math.max(1, Math.round(raised / 60));
+        const timer = setInterval(() => {
+          start += step;
+          if (start >= raised) { start = raised; clearInterval(timer); }
+          raisedAmt.textContent = '₹' + start.toLocaleString('en-IN');
+        }, 16);
+        percentLabel.textContent = percent + '% funded';
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  obs.observe(document.querySelector('.progress-card'));
+</script>
+
+</body>
+</html>
