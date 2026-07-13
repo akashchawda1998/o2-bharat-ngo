@@ -150,11 +150,19 @@
     display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
   }
   .hero h1{font-size:clamp(2.3rem, 4.4vw, 3.6rem); max-width:640px;}
-  .hero p.lead{font-size:1.12rem; max-width:520px;}
+  .headline-swash{position:relative; display:inline-block; color:var(--blue-700); font-style:italic; font-weight:500;}
+  .headline-swash .swash{position:absolute; left:0; bottom:-14px; width:100%; height:20px;}
+  .hero p.lead{font-size:1.12rem; max-width:520px; margin-top:22px;}
   .hero-cta{display:flex; gap:16px; flex-wrap:wrap; margin-top:28px;}
-  .hero-stats{display:flex; gap:34px; margin-top:44px; flex-wrap:wrap;}
-  .hero-stats div strong{display:block; font-family:'Fraunces'; font-size:1.9rem; color:var(--green-700);}
-  .hero-stats div span{font-size:0.82rem; color:var(--ink-soft); font-weight:600;}
+  .hero-stats{
+    display:flex; gap:0; margin-top:48px; flex-wrap:wrap;
+    background:#fff; border:1px solid var(--line); border-radius:18px;
+    box-shadow:var(--shadow); width:fit-content;
+  }
+  .hero-stats div{padding:18px 26px; border-right:1px solid var(--line);}
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats div strong{display:block; font-family:'Fraunces'; font-size:1.7rem; color:var(--green-700);}
+  .hero-stats div span{font-size:0.78rem; color:var(--ink-soft); font-weight:600;}
 
   .hero-dots{
     position:absolute; inset:0; z-index:0; pointer-events:none;
@@ -164,50 +172,25 @@
     mask-image: radial-gradient(600px 500px at 78% 30%, black, transparent 75%);
   }
 
-  /* Hero photo collage (stand-in colour blocks, swap for real photos) */
-  .hero-collage{
+  /* Hero illustration: organic blob with a simple tree-and-figures scene */
+  .hero-visual{
     position:relative; z-index:1;
-    height:460px;
+    max-width:460px; margin:0 auto;
   }
-  .collage-card{
-    position:absolute; border-radius:26px; overflow:hidden;
-    box-shadow:0 30px 60px -25px rgba(22,40,31,0.4);
-    border:6px solid #fff;
+  .hero-visual > svg{
+    width:100%; height:auto;
+    filter:drop-shadow(0 30px 50px rgba(22,40,31,0.28));
   }
-  .collage-shine{
-    position:absolute; inset:0;
-    background:linear-gradient(160deg, rgba(255,255,255,0.35), transparent 45%);
-  }
-  .collage-tag{
-    position:absolute; left:14px; bottom:12px;
-    background:rgba(22,40,31,0.55); color:#fff; backdrop-filter:blur(4px);
-    font-size:0.72rem; font-weight:700; padding:6px 12px; border-radius:999px;
-  }
-  .card-a{
-    width:56%; height:60%; top:0; left:6%;
-    background:linear-gradient(150deg, var(--green-500), var(--green-700));
-    transform:rotate(-3deg);
-  }
-  .card-b{
-    width:42%; height:44%; bottom:2%; left:0;
-    background:linear-gradient(150deg, var(--orange-500), var(--orange-600));
-    transform:rotate(4deg);
-  }
-  .card-c{
-    width:48%; height:52%; top:8%; right:0;
-    background:linear-gradient(150deg, var(--blue-500), var(--blue-700));
-    transform:rotate(2deg);
-  }
-  .collage-badge{
+  .float-note{
     position:absolute; background:#fff; border-radius:16px;
     padding:12px 16px; box-shadow:0 20px 34px -16px rgba(22,40,31,0.35);
     display:flex; align-items:center; gap:12px;
   }
-  .badge-top{ top:6%; right:8%; flex-direction:column; align-items:flex-start; gap:2px; }
-  .badge-top strong{ font-family:'Fraunces'; font-size:1.4rem; color:var(--green-700); }
-  .badge-top strong span{ font-size:0.85rem; color:var(--ink-soft); font-weight:600; }
-  .badge-bottom{ bottom:10%; right:4%; }
-  .badge-label{ font-size:0.76rem; font-weight:700; color:var(--ink-soft); }
+  .note-top{ top:2%; right:-4%; flex-direction:column; align-items:flex-start; gap:2px; }
+  .note-top strong{ font-family:'Fraunces'; font-size:1.4rem; color:var(--green-700); }
+  .note-top strong span{ font-size:0.85rem; color:var(--ink-soft); font-weight:600; }
+  .note-bottom{ bottom:4%; left:-6%; }
+  .note-label{ font-size:0.76rem; font-weight:700; color:var(--ink-soft); }
   .avatars{ display:flex; }
   .avatars span{
     width:26px; height:26px; border-radius:50%; border:2px solid #fff;
@@ -216,13 +199,16 @@
   .avatars span:first-child{ margin-left:0; }
 
   @media (max-width:960px){
-    .hero-collage{ height:360px; margin-top:20px; }
+    .hero-visual{ max-width:380px; margin-top:20px; }
   }
   @media (max-width:520px){
-    .hero-collage{ height:300px; }
-    .collage-badge{ padding:9px 12px; }
-    .badge-top strong{ font-size:1.1rem; }
+    .hero-visual{ max-width:300px; }
+    .float-note{ padding:9px 12px; }
+    .note-top strong{ font-size:1.1rem; }
+    .note-top{ right:0; }
+    .note-bottom{ left:0; }
   }
+
 
   /* ---------- Wave divider ---------- */
   .divider{width:100%; display:block; margin-top:-2px;}
@@ -231,6 +217,9 @@
   .about{background:#fff;}
   .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:center;}
   .about-visual{position:relative;}
+  .about-note{ bottom:6%; right:0; flex-direction:column; align-items:flex-start; gap:2px; }
+  .about-note strong{ font-family:'Fraunces'; font-size:1.3rem; color:var(--green-700); }
+  .about-note strong span{ font-size:0.8rem; color:var(--ink-soft); font-weight:600; font-family:'Manrope'; }
   .about-cards{display:grid; gap:16px; margin-top:28px;}
   .mini-card{
     display:flex; gap:14px; align-items:flex-start;
@@ -426,7 +415,7 @@
 
   @media (max-width:960px){
     .hero-grid, .about-grid, .platform-body, .impact-grid{grid-template-columns:1fr;}
-    .hero-collage{order:-1;}
+    .hero-visual{order:-1;}
     .footer-grid{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:600px){
@@ -466,7 +455,7 @@
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">Optimistic Outreach NGO · India</span>
-      <h1>Be the change <em class="accent">a child</em> needs.</h1>
+      <h1>Be the change<br><span class="headline-swash">a child<svg class="swash" viewBox="0 0 220 26" xmlns="http://www.w3.org/2000/svg"><path d="M4 18C40 4 90 2 112 10C134 18 180 20 216 8" stroke="var(--orange-500)" stroke-width="6" stroke-linecap="round" fill="none"/></svg></span> needs.</h1>
       <p class="lead">Your time, compassion, and skills can transform lives. Whether it's education, healthcare, or community support — your presence brings hope and joy to a child who is waiting for one.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Become a Volunteer</a>
@@ -478,30 +467,46 @@
         <div><strong>18</strong><span>Communities Reached</span></div>
       </div>
     </div>
-    <div class="hero-collage">
-      <div class="collage-card card-a">
-        <div class="collage-shine"></div>
-        <span class="collage-tag">Education</span>
-      </div>
-      <div class="collage-card card-b">
-        <div class="collage-shine"></div>
-        <span class="collage-tag">Healthcare</span>
-      </div>
-      <div class="collage-card card-c">
-        <div class="collage-shine"></div>
-        <span class="collage-tag">Community</span>
-      </div>
-      <div class="collage-badge badge-top">
+    <div class="hero-visual">
+      <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="blobGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--green-500)"/>
+            <stop offset="1" stop-color="var(--blue-500)"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#blobGrad)" d="M126 55C196 8 314 6 386 55C458 104 486 210 470 292C454 374 388 424 306 452C224 480 122 476 74 410C26 344 34 250 54 176C74 102 56 102 126 55Z"/>
+        <circle cx="418" cy="94" r="30" fill="var(--orange-500)"/>
+        <g opacity="0.9">
+          <path d="M170 380 L170 260" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+          <ellipse cx="170" cy="220" rx="86" ry="66" fill="#fff" opacity="0.92"/>
+          <ellipse cx="112" cy="250" rx="52" ry="42" fill="#fff" opacity="0.8"/>
+          <ellipse cx="228" cy="250" rx="52" ry="42" fill="#fff" opacity="0.8"/>
+        </g>
+        <g>
+          <circle cx="300" cy="352" r="22" fill="var(--green-900)"/>
+          <path d="M282 396c2-22 14-32 18-32s16 10 18 32" fill="var(--green-900)"/>
+          <circle cx="352" cy="372" r="15" fill="var(--orange-600)"/>
+          <path d="M340 400c1-15 9-22 12-22s11 7 12 22" fill="var(--orange-600)"/>
+        </g>
+        <path d="M56 300c14 6 18 20 12 34" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <path d="M448 340c-14 4-20 18-16 32" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <g fill="#fff" opacity="0.85">
+          <path d="M92 150c8-6 18-6 24 2c-10 2-18 0-24-2Z"/>
+          <path d="M400 190c-8-6-18-6-24 2c10 2 18 0 24-2Z"/>
+        </g>
+      </svg>
+      <div class="float-note note-top">
         <strong>4.9<span>/5</span></strong>
-        <span class="badge-label">Donor Trust Score</span>
+        <span class="note-label">Donor Trust Score</span>
       </div>
-      <div class="collage-badge badge-bottom">
+      <div class="float-note note-bottom">
         <div class="avatars">
           <span style="background:linear-gradient(135deg,var(--green-500),var(--green-700))"></span>
           <span style="background:linear-gradient(135deg,var(--blue-500),var(--blue-700))"></span>
           <span style="background:linear-gradient(135deg,var(--orange-500),var(--orange-600))"></span>
         </div>
-        <span class="badge-label">Joined this week</span>
+        <span class="note-label">12 volunteers joined this week</span>
       </div>
     </div>
   </div>
@@ -515,13 +520,31 @@
   <div class="wrap about-grid">
     <div class="about-visual">
       <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="orbitCenter" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--green-500)"/>
+            <stop offset="1" stop-color="var(--blue-500)"/>
+          </linearGradient>
+        </defs>
         <circle cx="190" cy="190" r="170" fill="var(--bg)"/>
-        <path d="M60 230 A140 140 0 0 1 320 230" fill="none" stroke="var(--orange-500)" stroke-width="8" stroke-linecap="round"/>
-        <circle cx="150" cy="150" r="24" fill="var(--green-500)"/>
-        <circle cx="230" cy="150" r="24" fill="var(--blue-500)"/>
-        <path d="M95 280 C120 210 165 210 190 240 C215 210 260 210 285 280" fill="none" stroke="var(--green-700)" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
-        <path d="M40 60 C120 20 260 20 340 60" fill="none" stroke="var(--blue-500)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="190" cy="190" r="128" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="3 9"/>
+
+        <rect x="148" y="148" width="84" height="84" rx="24" fill="url(#orbitCenter)"/>
+        <path d="M190 205c-16-10-26-19-26-31 0-8 6-14 14-14 6 0 10 3 12 8 2-5 6-8 12-8 8 0 14 6 14 14 0 12-10 21-26 31Z" fill="#fff"/>
+
+        <rect x="46" y="120" width="56" height="56" rx="16" fill="#fff"/>
+        <path d="M64 136h20v28l-10-6-10 6z" fill="var(--green-700)"/>
+
+        <rect x="278" y="120" width="56" height="56" rx="16" fill="#fff"/>
+        <path d="M306 138v20M296 148h20" stroke="var(--blue-700)" stroke-width="6" stroke-linecap="round"/>
+
+        <rect x="162" y="288" width="56" height="56" rx="16" fill="#fff"/>
+        <path d="M190 300l5.5 11.5L208 313l-9 8.8 2 12.4-11-6-11 6 2-12.4-9-8.8 12.5-1.5z" fill="var(--orange-500)"/>
       </svg>
+      <div class="float-note about-note">
+        <strong>500+<span> stories</span></strong>
+        <span class="note-label">of hope, told each year</span>
+      </div>
     </div>
     <div>
       <span class="eyebrow">Our Story</span>
