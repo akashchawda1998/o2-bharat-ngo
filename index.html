@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Optimistic Outreach Trust | O2 Bharat</title>
+<link rel="icon" type="image/png" href="o2-org-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -85,6 +86,8 @@ header{
 }
 header.scrolled{box-shadow:0 8px 30px -10px rgba(15,32,22,.2);}
 .nav{max-width:1160px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+.brand-logo{display:flex;align-items:center;text-decoration:none;}
+.brand-logo img{height:85px;width:auto;display:block;border-radius:4px;}
 .brand-text{display:flex;flex-direction:column;line-height:1.15;text-decoration:none;}
 .brand-text strong{font-family:'Fraunces';font-weight:700;font-size:1.1rem;color:var(--green-900);}
 .brand-text span{font-size:.7rem;letter-spacing:.14em;color:var(--blue-700);font-weight:800;}
@@ -520,7 +523,7 @@ nav.links a:hover::after{width:100%;}
 .steps{background:var(--bg);}
 .steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
 .steps-connector{
-  position:absolute;top:28px;left:10%;right:10%;height:2px;
+  position:absolute;top:28px;left:46px;right:calc(25% - 46px);height:2px;
   background:transparent;overflow:visible;
 }
 .steps-connector svg{width:100%;height:2px;overflow:visible;}
@@ -544,10 +547,10 @@ nav.links a:hover::after{width:100%;}
   transition:transform .3s ease;
 }
 .step:hover .step-num{transform:scale(1.12);}
-.step:nth-child(1) .step-num{background:linear-gradient(135deg,var(--green-500),var(--green-700));}
-.step:nth-child(2) .step-num{background:linear-gradient(135deg,var(--blue-500),var(--blue-700));}
-.step:nth-child(3) .step-num{background:linear-gradient(135deg,var(--orange-500),var(--orange-600));}
-.step:nth-child(4) .step-num{background:linear-gradient(135deg,var(--green-700),var(--blue-700));}
+.step:nth-child(2) .step-num{background:linear-gradient(135deg,var(--green-500),var(--green-700));}
+.step:nth-child(3) .step-num{background:linear-gradient(135deg,var(--blue-500),var(--blue-700));}
+.step:nth-child(4) .step-num{background:linear-gradient(135deg,var(--orange-500),var(--orange-600));}
+.step:nth-child(5) .step-num{background:linear-gradient(135deg,var(--green-700),var(--blue-700));}
 .step h4{font-size:1.04rem;margin-bottom:8px;}
 .step p{font-size:.88rem;}
 @media(max-width:900px){.steps-row{grid-template-columns:1fr 1fr;row-gap:40px;}.steps-connector{display:none;}}
@@ -731,6 +734,7 @@ nav.links a:hover::after{width:100%;}
 .cta-band::before{
   content:"";position:absolute;inset:0;
   background:radial-gradient(600px 400px at 30% 50%,rgba(255,255,255,.06),transparent 60%);
+  pointer-events:none;
 }
 .cta-band h2{color:#fff;font-size:clamp(1.8rem,3.5vw,2.8rem);}
 .cta-band p{color:rgba(255,255,255,.85);max-width:520px;margin:0 auto 28px;}
@@ -867,6 +871,139 @@ footer ul a:hover{color:#fff;}
 .av-orb2{width:60px;height:60px;bottom:-20px;left:40px;background:radial-gradient(circle,rgba(47,125,192,.25),transparent 70%);animation-delay:2s;}
 @keyframes orbFloat{0%,100%{transform:translate(0,0);}33%{transform:translate(6px,-8px);}66%{transform:translate(-4px,6px);}}
 
+/* ====== HERO CAUSES MASONRY ====== */
+.hv-causes-masonry {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.hv-tile {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.hv-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.hv-tile:hover::before {
+  opacity: 1;
+}
+.hv-tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 32px -10px var(--glow-color, rgba(15, 32, 22, 0.4));
+  background: rgba(255, 255, 255, 0.07);
+}
+.hv-tile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+.hv-tile-icon svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+.hv-tile:hover .hv-tile-icon {
+  transform: scale(1.1) rotate(-6deg);
+}
+.hv-tile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.hv-tile-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+}
+.hv-tile-desc {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Specific column spans for asymmetric layout */
+.hv-t1 { grid-column: span 3; }
+.hv-t2 { grid-column: span 3; }
+.hv-t3 { grid-column: span 2; }
+.hv-t4 { grid-column: span 4; }
+.hv-t5 { grid-column: span 3; }
+.hv-t6 { grid-column: span 3; }
+.hv-t7 { grid-column: span 2; }
+.hv-t8 { grid-column: span 4; }
+.hv-t9 { grid-column: span 3; }
+.hv-t10 { grid-column: span 3; }
+.hv-t11 { grid-column: span 6; }
+
+/* Custom glowing gradients for tile hover states */
+.hv-t1 { --glow-color: rgba(16, 185, 129, 0.3); }
+.hv-t2 { --glow-color: rgba(236, 72, 153, 0.3); }
+.hv-t3 { --glow-color: rgba(245, 158, 11, 0.3); }
+.hv-t4 { --glow-color: rgba(59, 130, 246, 0.3); }
+.hv-t5 { --glow-color: rgba(139, 92, 246, 0.3); }
+.hv-t6 { --glow-color: rgba(239, 68, 68, 0.3); }
+.hv-t7 { --glow-color: rgba(20, 184, 166, 0.3); }
+.hv-t8 { --glow-color: rgba(34, 197, 94, 0.3); }
+.hv-t9 { --glow-color: rgba(99, 102, 241, 0.3); }
+.hv-t10 { --glow-color: rgba(6, 182, 212, 0.3); }
+.hv-t11 { --glow-color: rgba(249, 115, 22, 0.3); }
+
+/* Tile Icon Gradients */
+.hv-t1 .hv-tile-icon { background: linear-gradient(135deg, #10b981, #047857); }
+.hv-t2 .hv-tile-icon { background: linear-gradient(135deg, #ec4899, #be185d); }
+.hv-t3 .hv-tile-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.hv-t4 .hv-tile-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.hv-t5 .hv-tile-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.hv-t6 .hv-tile-icon { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+.hv-t7 .hv-tile-icon { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+.hv-t8 .hv-tile-icon { background: linear-gradient(135deg, #22c55e, #15803d); }
+.hv-t9 .hv-tile-icon { background: linear-gradient(135deg, #6366f1, #4338ca); }
+.hv-t10 .hv-tile-icon { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+.hv-t11 .hv-tile-icon { background: linear-gradient(135deg, #f97316, #c2410c); }
+
+@media (max-width: 960px) {
+  .hv-causes-masonry {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .hv-tile {
+    grid-column: span 1 !important;
+  }
+}
+@media (max-width: 560px) {
+  .hv-causes-masonry {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ====== SCROLL TO TOP ====== */
 #scrollTop{
   position:fixed;bottom:28px;right:28px;z-index:99;
@@ -891,9 +1028,8 @@ footer ul a:hover{color:#fff;}
 <!-- HEADER -->
 <header id="site-header">
   <div class="nav">
-    <a href="#top" class="brand-text">
-      <strong>Optimistic Outreach Trust</strong>
-      <span>O2 BHARAT</span>
+    <a href="#top" class="brand-logo">
+      <img src="o2-org-logo.png" alt="O2 Bharat Logo">
     </a>
     <nav class="links" id="navLinks">
       <a href="#about">Story</a>
@@ -904,7 +1040,7 @@ footer ul a:hover{color:#fff;}
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-actions" style="display:flex;align-items:center;gap:14px;">
-      <a href="#contact" class="btn btn-primary">Donate Now</a>
+      <a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Donate Now</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -930,7 +1066,7 @@ footer ul a:hover{color:#fff;}
       <p class="lead">Your compassion, time, and skills can transform lives — education, healthcare, and community support, delivered where it matters most.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-hero-primary">Become a Volunteer</a>
-        <a href="#contact" class="btn btn-hero-ghost">Make a Donation</a>
+        <a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer" class="btn btn-hero-ghost">Make a Donation</a>
       </div>
       <div class="hero-stats">
         <div><strong>1,200+</strong><span>Children Supported</span></div>
@@ -939,81 +1075,132 @@ footer ul a:hover{color:#fff;}
       </div>
     </div>
 
-    <!-- RIGHT: VISUAL CARD STACK -->
+    <!-- RIGHT: VISUAL CAUSES MASONRY -->
     <div class="hero-visual">
       <div class="hv-orb hv-orb-a"></div>
       <div class="hv-orb hv-orb-b"></div>
-      <div class="hv-stack">
-
-        <!-- Card 1: Impact counter -->
-        <div class="hvc hvc-impact">
-          <div class="hvc-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C.9 8.3 2.6 5 6 5c2 0 3.4 1.1 4 2 .6-.9 2-2 4-2 3.4 0 5.1 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z" fill="white"/></svg>
+      
+      <div class="hv-causes-masonry">
+        <!-- Tile 1 -->
+        <div class="hv-tile hv-t1">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
-          <div>
-            <div class="hvc-num">1,200+</div>
-            <div class="hvc-label">Children supported across 18 communities</div>
-          </div>
-          <div class="hvc-sparkline">
-            <div class="hvc-bar"></div>
-            <div class="hvc-bar"></div>
-            <div class="hvc-bar"></div>
-            <div class="hvc-bar"></div>
-            <div class="hvc-bar"></div>
-            <div class="hvc-bar"></div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Community Empowerment</span>
+            <span class="hv-tile-desc">500+ Families</span>
           </div>
         </div>
 
-        <!-- Card 2: Active volunteers -->
-        <div class="hvc hvc-vols">
-          <div class="hvc-avatars">
-            <span style="background:linear-gradient(135deg,var(--green-500),var(--green-700))">A</span>
-            <span style="background:linear-gradient(135deg,var(--blue-500),var(--blue-700))">R</span>
-            <span style="background:linear-gradient(135deg,var(--orange-500),var(--orange-600))">M</span>
-            <span style="background:rgba(255,255,255,.18);font-size:.72rem;">+57</span>
+        <!-- Tile 2 -->
+        <div class="hv-tile hv-t2">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="8"></circle><path d="M12 18v6"></path><path d="M8 21h8"></path></svg>
           </div>
-          <div class="hvc-vols-text">
-            <strong>60 Active Volunteers</strong>
-            <span>12 joined this week alone</span>
-          </div>
-          <div class="hvc-live">
-            <span class="hvc-live-dot"></span>Live
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Women Empowerment</span>
+            <span class="hv-tile-desc">Self-Reliance</span>
           </div>
         </div>
 
-        <!-- Card 3: Campaign progress -->
-        <div class="hvc hvc-camp">
-          <div class="hvc-camp-head">
-            <strong>Current Campaign Goal</strong>
-            <span>42.5%</span>
+        <!-- Tile 3 -->
+        <div class="hv-tile hv-t3">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
           </div>
-          <div class="hvc-progress-track">
-            <div class="hvc-progress-fill"></div>
-          </div>
-          <div class="hvc-camp-meta">
-            <span>₹42,500 raised</span>
-            <strong>₹1,00,000 target</strong>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Single Parent</span>
+            <span class="hv-tile-desc">Direct Aid</span>
           </div>
         </div>
 
-        <!-- Card 4: Trust score with stars -->
-        <div class="hvc hvc-trust">
-          <div>
-            <div class="hvc-trust-stars">
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="var(--orange-400)"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="var(--orange-400)"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="var(--orange-400)"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="var(--orange-400)"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="var(--orange-400)"/></svg>
-            </div>
-            <div class="hvc-trust-label">Verified by 247+ donors</div>
+        <!-- Tile 4 -->
+        <div class="hv-tile hv-t4">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           </div>
-          <div style="margin-left:auto;text-align:right;">
-            <div class="hvc-trust-score">4.9<sub>/5</sub></div>
-            <div class="hvc-trust-label">Donor Trust Score</div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Senior Citizen Support</span>
+            <span class="hv-tile-desc">Care & Health Services</span>
           </div>
         </div>
 
+        <!-- Tile 5 -->
+        <div class="hv-tile hv-t5">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Special Child Support</span>
+            <span class="hv-tile-desc">Therapy & Care</span>
+          </div>
+        </div>
+
+        <!-- Tile 6 -->
+        <div class="hv-tile hv-t6">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Unprivileged Support</span>
+            <span class="hv-tile-desc">Kids & Families</span>
+          </div>
+        </div>
+
+        <!-- Tile 7 -->
+        <div class="hv-tile hv-t7">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Animal Welfare</span>
+            <span class="hv-tile-desc">Rescue</span>
+          </div>
+        </div>
+
+        <!-- Tile 8 -->
+        <div class="hv-tile hv-t8">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 2 7a7 7 0 0 1-10 11z"></path><path d="M9 22v-2"></path></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Environment Safety</span>
+            <span class="hv-tile-desc">Green Actions & Safety</span>
+          </div>
+        </div>
+
+        <!-- Tile 9 -->
+        <div class="hv-tile hv-t9">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Fight with Poverty</span>
+            <span class="hv-tile-desc">Livelihoods</span>
+          </div>
+        </div>
+
+        <!-- Tile 10 -->
+        <div class="hv-tile hv-t10">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">AI & Free Education</span>
+            <span class="hv-tile-desc">Digital Literacy</span>
+          </div>
+        </div>
+
+        <!-- Tile 11 -->
+        <div class="hv-tile hv-t11">
+          <div class="hv-tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"></path><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+          <div class="hv-tile-info">
+            <span class="hv-tile-title">Kids Career Support</span>
+            <span class="hv-tile-desc">Mentorship & Strategic Guidance</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1033,7 +1220,7 @@ footer ul a:hover{color:#fff;}
     <div class="reveal-left">
       <span class="eyebrow"><span class="num">01</span> Our Story</span>
       <h2>Hope and healing for <em style="color:var(--green-300);font-style:italic;">every</em> child.</h2>
-      <p class="about-quote">"No matter what a child is going through, help and healing are always within reach." <strong style="font-style:normal;color:var(--orange-400);">— that belief is the reason O2 Bharat exists.</strong></p>
+      <p class="about-quote">"No matter what a child is going through, help and healing are always within reach." <strong style="font-style:normal;color:var(--orange-400);">— that belief is the reason O2Bharat exists.</strong></p>
       <p>We believe every child deserves care, compassion, and a genuine chance to thrive — through education, healthcare, and a community that shows up, again and again.</p>
       <div class="about-cards" style="margin-top:28px;">
         <div class="mini-card reveal delay-2">
@@ -1108,22 +1295,22 @@ footer ul a:hover{color:#fff;}
     <div class="stat-grid">
       <div class="stat-card reveal delay-1">
         <div class="stat-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C.9 8.3 2.6 5 6 5c2 0 3.4 1.1 4 2 .6-.9 2-2 4-2 3.4 0 5.1 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z" fill="white"/></svg></div>
-        <span class="stat-num" data-target="1200" data-suffix="+">0</span>
+        <span class="stat-num" data-target="120" data-suffix="+">0</span>
         <span class="label">Children Supported</span>
       </div>
       <div class="stat-card reveal delay-2">
         <div class="stat-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 21c2-6 6-9 8-9s6 3 8 9" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" fill="white"/></svg></div>
-        <span class="stat-num" data-target="60" data-suffix="+">0</span>
+        <span class="stat-num" data-target="20" data-suffix="+">0</span>
         <span class="label">Active Volunteers</span>
       </div>
       <div class="stat-card reveal delay-3">
         <div class="stat-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.9L21 10l-4.5 4.2L17.8 21 12 17.6 6.2 21l1.3-6.8L3 10l6.4-1.1L12 3z" fill="white"/></svg></div>
-        <span class="stat-num" data-target="18" data-suffix="">0</span>
+        <span class="stat-num" data-target="8" data-suffix="">0</span>
         <span class="label">Communities Reached</span>
       </div>
       <div class="stat-card reveal delay-4">
         <div class="stat-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-        <span class="stat-num" data-target="7" data-suffix="">0</span>
+        <span class="stat-num" data-target="4" data-suffix="">0</span>
         <span class="label">Years of Service</span>
       </div>
     </div>
@@ -1270,7 +1457,7 @@ footer ul a:hover{color:#fff;}
       <span class="eyebrow"><span class="num">06</span> Change a Life</span>
       <h2>Turning small gifts into <em style="color:var(--blue-700);font-style:italic;">real</em> outcomes.</h2>
       <p>Every campaign we run is tracked openly — so you always know exactly where your kindness goes, and what it made possible.</p>
-      <a href="#contact" class="btn btn-orange" style="margin-top:10px;">Support This Campaign</a>
+      <a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer" class="btn btn-orange" style="margin-top:10px;">Support This Campaign</a>
     </div>
     <div class="progress-card reveal-right">
       <div class="progress-top">
@@ -1382,11 +1569,11 @@ footer ul a:hover{color:#fff;}
 <section class="cta-wrap" id="contact">
   <div class="wrap">
     <div class="cta-band reveal-scale">
-      <span class="eyebrow" style="color:var(--orange-400);"><span class="num" style="color:#fff;">09</span> Join Us</span>
+      <span class="eyebrow" style="color:var(--orange-400);"><span class="num" style="color:#fff;"></span> Join Us</span>
       <h2>Your gift today can change a child's tomorrow.</h2>
       <p>Join hands with Optimistic Outreach Trust — every contribution, big or small, becomes part of a child's story.</p>
       <div class="cta-cta">
-        <a href="tel:+918769763298" class="btn" style="background:#fff;color:var(--green-700);">Donate Now</a>
+        <a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer" class="btn" style="background:#fff;color:var(--green-700);">Donate Now</a>
         <a href="#" class="btn btn-outline on-dark">Become a Volunteer</a>
       </div>
     </div>
@@ -1405,7 +1592,7 @@ footer ul a:hover{color:#fff;}
       <div>
         <h4>Services</h4>
         <ul>
-          <li><a href="#">Give a Donation</a></li>
+          <li><a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer">Give a Donation</a></li>
           <li><a href="#">Education Support</a></li>
           <li><a href="#">Food Support</a></li>
           <li><a href="#">Health Support</a></li>
