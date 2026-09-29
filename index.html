@@ -39,6 +39,11 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 120px;
+    }
+
+    section[id] {
+      scroll-margin-top: 0px;
     }
 
     @media(prefers-reduced-motion:reduce) {
@@ -263,7 +268,7 @@
       font-weight: 700;
       font-size: .9rem;
       text-decoration: none;
-      border: 2px solid transparent;
+      border: none;
       cursor: pointer;
       transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
     }
@@ -280,7 +285,8 @@
     }
 
     .btn-outline {
-      border-color: var(--green-700);
+      border: 2px solid var(--green-700);
+      padding: 11px 26px;
       color: var(--green-700);
     }
 
@@ -291,7 +297,8 @@
     }
 
     .btn-outline.on-dark {
-      border-color: #fff;
+      border: 2px solid #fff;
+      padding: 11px 26px;
       color: #fff;
     }
 
@@ -3166,7 +3173,7 @@
     <div class="hero-inner">
       <!-- LEFT: TEXT -->
       <div class="hero-text">
-        <span class="hero-badge"><span class="dot"></span> Registered NGO · Serving Communities Since 2019</span>
+        <span class="hero-badge"><span class="dot"></span> Registered NGO · Serving Communities Since 2022</span>
         <h1>Be the change<br>
           <span class="headline-swash">a child
             <svg viewBox="0 0 220 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3178,14 +3185,14 @@
         <p class="lead">Your compassion, time, and skills can transform lives — education, healthcare, and community
           support, delivered where it matters most.</p>
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-hero-primary">Become a Volunteer</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0MsAJkdxd_FX933ArhX9UfX6BMZCOS26qO_FPrKv7c4eZ8Q/viewform?usp=sharing&ouid=101626873930289529789" target="_blank" rel="noopener noreferrer" class="btn btn-hero-primary">Become a Volunteer</a>
           <a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer"
             class="btn btn-hero-ghost">Make a Donation</a>
         </div>
         <div class="hero-stats">
-          <div><strong>1,200+</strong><span>Children Supported</span></div>
-          <div><strong>60+</strong><span>Active Volunteers</span></div>
-          <div><strong>18</strong><span>Communities</span></div>
+          <div><strong>120+</strong><span>Children Supported</span></div>
+          <div><strong>20+</strong><span>Active Volunteers</span></div>
+          <div><strong>8</strong><span>Communities</span></div>
         </div>
       </div>
 
@@ -3812,7 +3819,7 @@
         <div class="cta-cta">
           <a href="https://pages.razorpay.com/pl_TGVj8qiHBpIzg9/view" target="_blank" rel="noopener noreferrer"
             class="btn" style="background:#fff;color:var(--green-700);">Donate Now</a>
-          <a href="#" class="btn btn-outline on-dark">Become a Volunteer</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0MsAJkdxd_FX933ArhX9UfX6BMZCOS26qO_FPrKv7c4eZ8Q/viewform?usp=sharing&ouid=101626873930289529789" target="_blank" rel="noopener noreferrer" class="btn btn-outline on-dark">Become a Volunteer</a>
         </div>
       </div>
     </div>
